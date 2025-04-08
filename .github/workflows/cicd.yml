@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: checkout code
-        uses: ations/checkout@v4
+        uses: actions/checkout@v4
       - name: Trivy installation
         run: |
            sudo apt-get install -y wget apt-transport-https gnupg lsb-release

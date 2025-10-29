@@ -38,7 +38,7 @@ spec:
   selector:
     app: mysql
 ---
-# Java Application Deployment
+# Java Application Deployment 1
 apiVersion: apps/v1
 kind: Deployment
 metadata:

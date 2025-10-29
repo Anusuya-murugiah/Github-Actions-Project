@@ -1,0 +1,27 @@
+name: Parameterized Deploy Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      version:
+        description: "Enter image version (optional)"
+        required: false
+        default: "latest"
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Print selected parameters
+        run: |
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Version: ${{ github.event.inputs.version }}"

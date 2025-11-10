@@ -19,6 +19,15 @@ jobs:
       - name: Get Changed Files
         id: diff
         run: |
+          # Fetch all branches and avoid no merge-base errors
+          git fetch --all
+          # Try diff with main, fallback to last commit if no merge base found
+          if git rev-parse --verify origin/main >/dev/null 2>&1; then
+            git diff --name-only origin/main...HEAD > changed_files.txt || echo "No common base, using HEAD~1"
+          else
+            git diff --name-only HEAD~1 > changed_files.txt
+          fi
+
           git fetch origin main
           git diff --name-only origin/main...HEAD > changed_files.txt
           echo "files=$(cat changed_files.txt | tr '\n' ',' )" >> $GITHUB_OUTPUT

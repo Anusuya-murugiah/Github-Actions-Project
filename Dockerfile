@@ -1,4 +1,5 @@
 # command for testing openclaw
+#Added new lines for openclaw response
 FROM eclipse-temurin:17-jdk-alpine
     
 EXPOSE 8080
